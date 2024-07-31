@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Menu.Models;
+using System;
 
 namespace Menu.Data
 {
@@ -21,7 +22,7 @@ namespace Menu.Data
 
 
             modelBuilder.Entity<Dish>().HasData(
-                new Dish { Id=1, Name= "Margheritta", Price= 7.50, ImageUrl= "https://cdn.shopify.com/s/files/1/0205/9582/articles/20220211142347-margherita-9920_ba86be55-674e-4f35-8094-2067ab41a671.jpg?crop=center&height=915&v=1644590192&width=1200" }
+                new Dish { Id=1, Name= "Margheritta", Price= 7.50, Offer="30% OFF", ImageUrl = "https://cdn.shopify.com/s/files/1/0205/9582/articles/20220211142347-margherita-9920_ba86be55-674e-4f35-8094-2067ab41a671.jpg?crop=center&height=915&v=1644590192&width=1200" }
                 );
             modelBuilder.Entity<Ingredient>().HasData(
                 new Ingredient { Id= 1, Name="Tomato Sauce"},

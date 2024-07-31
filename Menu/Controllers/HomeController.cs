@@ -15,7 +15,8 @@ namespace Menu.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Menu");
+            //return View();
         }
 
         public IActionResult Privacy()
@@ -28,5 +29,6 @@ namespace Menu.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }

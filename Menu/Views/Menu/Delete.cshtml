@@ -1,0 +1,21 @@
+﻿@model Menu.Models.Dish
+
+@{
+    ViewData["Title"] = "Delete Dish";
+}
+
+<h1>Delete Dish</h1>
+
+<h3>Are you sure you want to delete this dish?</h3>
+<div>
+    <h4>@Model.Name</h4>
+    <p><img src="@Model.ImageUrl" alt="@Model.Name" style="max-width: 100px;" /></p>
+    <p>Price: @Model.Price</p>
+    <p>Offer: @Model.Offer</p>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <input type="submit" value="Delete" class="btn btn-danger" />
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

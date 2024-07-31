@@ -1,8 +1,19 @@
-﻿@{
+﻿@model List<Menu.Models.Dish>
+@{
     ViewData["Title"] = "Home";
 }
 
 <div class="text-center">
     <h2 class="display-4">Welcome To Sagar's Cafe</h2>
-    <p><a href="https://localhost:7273/Menu">Menu</a>.</p>
+ 
+    @{
+        ViewData["Title"] = "Dishes";
+    }
+
+    <h1>Dishes</h1>
+
+    <div>
+        <a asp-controller="Menu" asp-action="Create" class="btn btn-primary">Create New Dish</a>
+    </div>
+
 </div>
