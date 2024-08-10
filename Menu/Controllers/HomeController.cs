@@ -15,8 +15,8 @@ namespace Menu.Controllers
 
         public IActionResult Index()
         {
-            return RedirectToAction("Index", "Menu");
-            //return View();
+            //return RedirectToAction("Index", "Menu");
+            return View();
         }
 
         public IActionResult Privacy()

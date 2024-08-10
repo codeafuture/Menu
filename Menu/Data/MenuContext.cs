@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Menu.Models;
-using System;
-
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 namespace Menu.Data
 {
-    public class MenuContext : DbContext
+    public class MenuContext : IdentityDbContext<IdentityUser>
     {
         public MenuContext( DbContextOptions<MenuContext> options ) : base(options) 
         { 
@@ -32,12 +32,25 @@ namespace Menu.Data
                 new DishIngredient { DishId=1, IngredientId=1},
                 new DishIngredient { DishId = 1, IngredientId = 2 }
                 );
-
+            modelBuilder.Entity<User>()
+            .HasMany(u => u.Roles)
+            .WithMany(r => r.Users)
+            .UsingEntity<UserRole>(
+                 u => u.HasOne(ur => ur.Role).WithMany(),
+                 r => r.HasOne(ur => ur.User).WithMany(),
+                 je =>
+                 {
+                     je.HasKey(ur => new { ur.UserId, ur.RoleId });
+                 });
             base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Dish> Dishes { get; set; }  
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<DishIngredient> DishIngredients { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
+
     }
 }
