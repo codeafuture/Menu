@@ -1,8 +1,30 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Home";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h2 class="display-4">Welcome To Sagar's Cafe</h2>
+ 
+    @{
+        ViewData["Title"] = "Dishes";
+    }
+    <div>
+        <a class="nav-link text-dark" asp-controller="Menu" asp-action="CreateUser">Create New User</a>
+    </div>
+
 </div>
+
+<form asp-action="Index" asp-controller="Login" method="post">
+    <div class="form-group">
+        <label asp-for="Username" class="control-label"></label>
+        <input asp-for="Username" class="form-control" />
+        <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Password" class="control-label"></label>
+        <input asp-for="Password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary" asp-controller="Login" asp-action="UserLogin">Login</button>
+</form>

@@ -1,0 +1,58 @@
+﻿@model Menu.Models.Dish
+
+@{
+    ViewData["Title"] = Model.Id == 0 ? "Create Dish" : "Edit Dish";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="CreateOrEdit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ImageUrl" class="control-label"></label>
+        <input asp-for="ImageUrl" class="form-control" />
+        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Price" class="control-label"></label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Offer" class="control-label"></label>
+        <input asp-for="Offer" class="form-control" />
+        <span asp-validation-for="Offer" class="text-danger"></span>
+    </div>
+    <h2>Ingredients</h2>
+    <div id="ingredients">
+        @foreach (var ingredient in ViewData["Ingredients"] as SelectList)
+        {
+            <div class="form-check">
+                <input type="checkbox" name="selectedIngredients" value="@ingredient.Value"
+                @(Model.DishIngredients.Any(di => di.IngredientId.ToString() == ingredient.Value) ? "checked" : "") />
+                <label class="form-check-label">
+                    @ingredient.Text
+                </label>
+            </div>
+        }
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
